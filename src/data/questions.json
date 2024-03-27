@@ -1,0 +1,95 @@
+[
+  {
+    "id": 1,
+    "question": "How many planet Earths can fit inside the sun?",
+    "answerOptions": [
+      { "answer": "1,300,000", "isCorrect": true },
+      { "answer": "55,000,000" },
+      { "answer": "20,070" },
+      { "answer": "600,000" }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "It takes 59 Earth days to make one day on Mercury. However, a year on Mercury goes by fast! Exactly how fast?",
+    "answerOptions": [
+      { "answer": "52 Earth days" },
+      { "answer": "69 Earth days" },
+      { "answer": "88 Earth days", "isCorrect": true },
+      { "answer": "365 Earth Days" }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "On Earth, clouds are composed of water vapor. What do the clouds on Venus consist of?",
+    "answerOptions": [
+      { "answer": "Aqua regia mounds" },
+      { "answer": "Water vapor" },
+      { "answer": "Sulfuric acid droplets", "isCorrect": true },
+      { "answer": "There are no clouds on Venus" }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "The Don Juan Pond in Antarctica is the Earth’s:",
+    "answerOptions": [
+      { "answer": "Coldest body of water" },
+      { "answer": "Saltiest body of water", "isCorrect": true },
+      { "answer": "Deepest body of water" },
+      { "answer": "Southernmost body of water" }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "What natural phenomena are commonly observed on Mars, resembling mini-tornadoes?            ",
+    "answerOptions": [
+      { "answer": "Sandstorms" },
+      { "answer": "Dust devils", "isCorrect": true },
+      { "answer": "Avalanches" },
+      { "answer": "Geysers" }
+    ]
+  },
+  {
+    "id": 6,
+    "question": "What is the Great Red Spot on Jupiter?",
+    "answerOptions": [
+      { "answer": "A massive storm", "isCorrect": true },
+      { "answer": "A volcanic peak" },
+      { "answer": "A giant crater" },
+      { "answer": "A frozen lake" }
+    ]
+  },
+  {
+    "id": 7,
+    "question": "Which moon of Saturn is known for its subsurface ocean and potential for harboring life?",
+    "answerOptions": [
+      { "answer": "Ganymede" },
+      { "answer": "Callisto" },
+      { "answer": "Europa", "isCorrect": true },
+      { "answer": "Titan" }
+    ]
+  },
+  {
+    "id": 8,
+    "question": "After whom are the satellites of Uranus named?",
+    "answerOptions": [
+      { "answer": "Kings of England" },
+      { "answer": "Presidents of USA" },
+      {
+        "answer": "Characters from the writings of William Shakespeare and Alexander Pope",
+        "isCorrect": true
+      },
+      { "answer": "Characters from the writings of George Bernard Shaw" }
+    ]
+  },
+  {
+    "id": 9,
+    "question": "Neptune, known as the big blue planet in our solar system gets its color from a gas. Which gas?",
+    "answerOptions": [
+      { "answer": "Methane", "isCorrect": true },
+      { "answer": "Bromine" },
+      { "answer": "Argon" },
+      { "answer": "Iodine" }
+    ]
+  }
+]
