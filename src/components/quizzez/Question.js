@@ -1,5 +1,5 @@
 import React from "react";
-import questions from "../../data/questions.json"; 
+import questions from "../../data/questions.json";
 import { useQuestionContext } from "../../context/useQuestionContext";
 
 function Question() {
