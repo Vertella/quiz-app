@@ -8,9 +8,10 @@ const QuestionContext = createContext();
 // Create a provider component
 const QuestionProvider = ({ children }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [selectedOptions, setSelectedOptions] = useState([0]);
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const currentQuestionObj = questions[currentQuestion];
   const answerOptions = currentQuestionObj.answerOptions;
+  const [allQuestions, setAllQuestions] = useState(false);
 
   const handlePrevious = () => {
     const prevQues = currentQuestion - 1;
@@ -20,11 +21,20 @@ const QuestionProvider = ({ children }) => {
 
   const handleNext = () => {
     const nextQues = currentQuestion + 1;
-    // Assuming questions is an array of questions
-    nextQues < questions.length && setCurrentQuestion(nextQues);
-    const nextAns = selectedOptions + 1;
-    nextAns < questions.length && setSelectedOptions(nextAns);
+      nextQues < questions.length && setCurrentQuestion(nextQues)
+      const nextAns = selectedOptions + 1;
+      nextAns < questions.length && setSelectedOptions([...selectedOptions, nextAns]);
+    console.log(currentQuestion);
+  };
 
+  const handleComplete = () => {
+    const totalQuestions = questions.length;
+    console.log(questions.length);
+    console.log(selectedOptions.length);
+    if ((currentQuestion+1) === totalQuestions) {
+      setAllQuestions(true);
+      return true;
+    }
   };
 
   // Provide the state and functions to the child components
@@ -33,6 +43,8 @@ const QuestionProvider = ({ children }) => {
     answerOptions,
     handlePrevious,
     handleNext,
+    handleComplete,
+    allQuestions,
   };
 
   return (
