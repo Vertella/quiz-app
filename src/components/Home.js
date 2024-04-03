@@ -6,7 +6,7 @@ import planets from "../data/planets.json";
 
 const Home = () => {
     return(
-        <div className="flex vw-full h-screen content-center bg-black">
+        <div className="flex vw-full h-screen content-center bg-gradient-to-t from-purple-800 via-50% via-slate-950 to-black">
             <div className=" w-full h-full m-6 relative rounded flex flex-col">
                 <div className="relative flex justify-center">
                 <div className="w-11/12 md:w-1/2 blur-lg opacity-50 absolute inset-2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-red-600 to-purple-600 animate-pulse rounded-lg"></div>
