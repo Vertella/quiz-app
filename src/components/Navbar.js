@@ -4,12 +4,13 @@ import Link from "next/link";
 
 function Navbar() {
     return ( 
-        <div className="w-full h-16 bg-blue-950 sticky top-0">
+        <div className="w-full h-16 bg-violet-950 sticky top-0 z-10">
             <div className="container mx-auto px-4 h-full">
-                <div className="flex justify-between items-center h-full">
+                <div className="flex justify-between items-center h-full text-white">
                     <Link href="/">
                     <img src="planet-logo.svg" className="h-14" alt="Planet"/>
                     </Link>
+                    <p className="text-xl">Planet Quiz</p>
                     <ul className="hidden md:flex gap-x-6 text-white">
                         <li>
                             <Link href="/quiz">

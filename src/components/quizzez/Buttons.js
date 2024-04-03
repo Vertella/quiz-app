@@ -7,8 +7,8 @@ export function ButtonPre() {
     return (
         <button
             onClick={handlePrevious}
-            className="w-[49%] py-3 bg-indigo-600 rounded-lg"
-        >
+            className="w-32 md:w-40 py-3 bg-indigo-600 rounded-lg"
+            >
             Previous
         </button>
   );
@@ -20,7 +20,7 @@ export function ButtonNext() {
     return (
         <button
             onClick={handleNext}
-            className="w-[49%] py-3 bg-indigo-600 rounded-lg"
+            className="w-32 md:w-40 py-3 bg-indigo-600 rounded-lg"
         >
             Next
         </button>
