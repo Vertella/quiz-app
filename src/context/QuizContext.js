@@ -8,10 +8,13 @@ const QuestionContext = createContext();
 // Create a provider component
 const QuestionProvider = ({ children }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [AnswerOptions, setAnswerOptions] = useState([]);
   const currentQuestionObj = questions[currentQuestion];
   const answerOptions = currentQuestionObj.answerOptions;
   const [allQuestions, setAllQuestions] = useState(false);
+  const userSelections = [];
+  const [userScore, setUserScore] = useState(0);
+  const [isQuizComplete, setIsQuizComplete] = useState(false);
 
   const handlePrevious = () => {
     const prevQues = currentQuestion - 1;
@@ -22,20 +25,41 @@ const QuestionProvider = ({ children }) => {
   const handleNext = () => {
     const nextQues = currentQuestion + 1;
       nextQues < questions.length && setCurrentQuestion(nextQues)
-      const nextAns = selectedOptions + 1;
-      nextAns < questions.length && setSelectedOptions([...selectedOptions, nextAns]);
-    console.log(currentQuestion);
+      const nextAns = AnswerOptions.length + 1;
+      nextAns < questions.length && setAnswerOptions([...AnswerOptions, nextAns]);
   };
 
   const handleComplete = () => {
     const totalQuestions = questions.length;
-    console.log(questions.length);
-    console.log(selectedOptions.length);
     if ((currentQuestion+1) === totalQuestions) {
       setAllQuestions(true);
       return true;
     }
   };
+
+  const quizProgress = () => {
+    return (
+      currentQuestion + 1
+    )
+  };
+
+  const handleUserSelection = (selectedAnswer) => {
+    userSelections.push(selectedAnswer);
+    const correctAnswer = answerOptions.find((option) => option.isCorrect);
+    const userScoreAdder = userScore + 1;
+
+    if (selectedAnswer === correctAnswer) {
+      
+      setUserScore(userScoreAdder);
+      console.log(`Correct, Score: ${userScore}`);
+    } else {
+      console.log("Incorrect!");
+    }
+  };
+
+  const quizComplete = () => {
+    setIsQuizComplete(true);
+  }
 
   // Provide the state and functions to the child components
   const contextValue = {
@@ -45,6 +69,11 @@ const QuestionProvider = ({ children }) => {
     handleNext,
     handleComplete,
     allQuestions,
+    quizProgress,
+    handleUserSelection,
+    quizComplete,
+    userScore,
+    isQuizComplete,
   };
 
   return (

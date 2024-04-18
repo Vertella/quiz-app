@@ -1,20 +1,32 @@
 import React from "react";
-import questions from "../../data/questions.json";
 import { useQuestionContext } from "@/context/useQuestionContext";
+import { useState } from "react";
 
 export function AnswerOptions() {
-  const { answerOptions } = useQuestionContext();
+  const { answerOptions, handleUserSelection } = useQuestionContext();
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleOptionClick = (answer) => {
+    setSelectedOption(answer);
+    handleUserSelection(answer); // Call your existing handler
+  };
 
   return (
-
-    answerOptions.map((answer, index) => (
+    <div>
+    {answerOptions.map((answer, index) => (
       <div
         key={index}
-        onClick={<p>FunctionHere</p>}
-        className="flex items-center py-3 text-center m-2 ml-0 space-x-2 border-2 cursor-pointer bg-indigo-950 border-violet-950 hover:text-yellow-500 hover:bg-violet-900 hover:border-dotted rounded-xl"
-      >
+        onClick={() => handleOptionClick(answer)}
+        className={`flex py-3 m-2 ml-0 space-x-2 border-2 cursor-pointer rounded-xl 
+        ${
+          selectedOption === answer
+              ? "bg-fuchsia-800 border-fuchsia-900"
+              : "bg-indigo-950 border-violet-950 hover:text-yellow-500 hover:bg-violet-900 hover:border-dotted"
+        }`}
+        >
         <p className="ml-6 self-center">{answer.answer}</p>
       </div>
-    ))
+    ))}
+    </div>
   );
 }

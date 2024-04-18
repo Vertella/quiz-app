@@ -28,11 +28,11 @@ export function ButtonNext() {
 }
 
 export function ButtonComplete() {
-    const { handleComplete } = useQuestionContext();
+    const { quizComplete } = useQuestionContext();
 
     return (
         <button
-            onClick={handleComplete}
+            onClick={quizComplete}
             className="w-32 md:w-40 py-3 bg-red-800 rounded-lg"
         >
             Complete

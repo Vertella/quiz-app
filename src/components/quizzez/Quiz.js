@@ -14,6 +14,8 @@ function Quiz() {
   showResults,
   handleComplete,
   allQuestions,
+  quizComplete,
+  isQuizComplete,
 } = useQuestionContext();
 
 const handleResults = () => {
@@ -21,15 +23,14 @@ const handleResults = () => {
 }
   return (
     <div>
-      {showResults ? (
+      {isQuizComplete ? (
         <ResultsScreen />
       ) : (
+        <>
         <Question
         currentQuestion={currentQuestion}
         answerOptions={answerOptions} />
-      )}
-
-      <div className="flex w-full justify-evenly align-end self-center md:w-10/12 mt-4 text-white">
+        <div className="flex w-full justify-evenly align-end self-center md:w-10/12 mt-4 text-white">
         <ButtonPre 
         handlePrevious={handlePrevious}
           />
@@ -39,6 +40,9 @@ const handleResults = () => {
           <ButtonNext />
         )}
       </div>
+        </>
+      )}
+
     </div>
   );
 };
