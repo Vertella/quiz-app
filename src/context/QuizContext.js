@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import questions from "../data/questions.json";
 
 // Create a context
@@ -9,11 +9,8 @@ const QuestionContext = createContext();
 const QuestionProvider = ({ children }) => {
   // State for managing the current question index
   const [currentQuestion, setCurrentQuestion] = useState(0);
-
-  // State for storing user selections and score
   const [userSelections, setUserSelections] = useState([]);
   const [userScore, setUserScore] = useState(0);
-
   // State for tracking if the quiz is complete
   const [isQuizComplete, setIsQuizComplete] = useState(false);
 
@@ -35,31 +32,38 @@ const QuestionProvider = ({ children }) => {
     }
   };
 
-  
+  const quizProgress = () => {
+    return (
+      currentQuestion + 1
+    )
+  };
 
   const handleUserSelection = (selectedAnswer) => {
-    if (userSelections.length > currentQuestion) return;
-    // Check if the selected answer is correct
     const correctAnswer = answerOptions.find((option) => option.isCorrect);
-    if (selectedAnswer === correctAnswer) {
-      setUserScore((prevScore) => prevScore + 1);
-    }
+    const isCorrect = selectedAnswer === correctAnswer;
 
-    // Update user selections
-    setUserSelections((prevSelections) => [...prevSelections, selectedAnswer]);
+    // Add user selection along with correctness to the state
+    setUserSelections(prev => [
+      ...prev,
+      { question: currentQuestionObj.question, selectedAnswer, isCorrect }
+    ]);
 
-    if (currentQuestion === questions.length - 1) {
-      setIsQuizComplete(true);
-    } else {
-      handleNext();
+    if (isCorrect) {
+      setUserScore(prev => prev + 1);
     }
   };
+
+  useEffect(() => {
+    if (currentQuestion === questions.length - 1) {
+      setIsQuizComplete(true);
+    }
+  }, [currentQuestion]); // Only run this when currentQuestion changes
+
+  const handleComplete = () => {
+    setIsQuizComplete(true);
+  };
+    
   
-    const quizProgress = () => {
-      return (
-        currentQuestion + 1
-      )
-    };
 
   // Provide the state and functions to the child components
   const contextValue = {
@@ -70,6 +74,7 @@ const QuestionProvider = ({ children }) => {
     handlePrevious,
     handleNext,
     handleUserSelection,
+    userSelections,
     quizProgress,
     userScore,
     isQuizComplete,
