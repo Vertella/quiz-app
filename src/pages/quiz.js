@@ -1,6 +1,6 @@
 import React from "react";
-import Quiz from "@/components/quizzez/Quiz";
-import QuizProgress from "@/components/quizzez/QuizProgress";
+import Quiz from "@/components/Quiz/Quiz";
+import QuizProgress from "@/components/Quiz/QuizProgress";
 
 const QuizPage = () => {
 

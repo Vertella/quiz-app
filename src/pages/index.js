@@ -1,8 +1,6 @@
 // pages/index.js
 import React from "react";
-import Navbar from "../components/Navbar"
-import Home from "@/components/Home";
-import QuizPage from "./quiz";
+import Home from "@/components/Layout/Home";
  
 const HomePage = () => {
   return (
@@ -13,7 +11,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-
-//Big picture for latest quiz
-// 2x3 container with links to other quizzes

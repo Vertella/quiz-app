@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import PlanetGallery from "./PlanetGenerator";
-import planets from "../data/planets.json";
+import PlanetGallery from "../PlanetGenerator";
+import planets from "../../data/planets.json";
 
 
 const Home = () => {

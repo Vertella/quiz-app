@@ -7,71 +7,70 @@ const QuestionContext = createContext();
 
 // Create a provider component
 const QuestionProvider = ({ children }) => {
+  // State for managing the current question index
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [AnswerOptions, setAnswerOptions] = useState([]);
-  const currentQuestionObj = questions[currentQuestion];
-  const answerOptions = currentQuestionObj.answerOptions;
-  const [allQuestions, setAllQuestions] = useState(false);
-  const userSelections = [];
+
+  // State for storing user selections and score
+  const [userSelections, setUserSelections] = useState([]);
   const [userScore, setUserScore] = useState(0);
+
+  // State for tracking if the quiz is complete
   const [isQuizComplete, setIsQuizComplete] = useState(false);
 
+   // Get the current question and its answer options
+   const currentQuestionObj = questions[currentQuestion];
+   const answerOptions = currentQuestionObj.answerOptions;
+
+  // Handle going to the previous question
   const handlePrevious = () => {
-    const prevQues = currentQuestion - 1;
-    if (prevQues >= 0) {setCurrentQuestion(prevQues);
+    if (currentQuestion > 0) {
+      setCurrentQuestion((prev) => prev - 1);
     }
   };
 
+  // Handle moving to the next question
   const handleNext = () => {
-    const nextQues = currentQuestion + 1;
-      nextQues < questions.length && setCurrentQuestion(nextQues)
-      const nextAns = AnswerOptions.length + 1;
-      nextAns < questions.length && setAnswerOptions([...AnswerOptions, nextAns]);
-  };
-
-  const handleComplete = () => {
-    const totalQuestions = questions.length;
-    if ((currentQuestion+1) === totalQuestions) {
-      setAllQuestions(true);
-      return true;
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion((prev) => prev + 1);
     }
   };
 
-  const quizProgress = () => {
-    return (
-      currentQuestion + 1
-    )
-  };
+  
 
   const handleUserSelection = (selectedAnswer) => {
-    userSelections.push(selectedAnswer);
+    if (userSelections.length > currentQuestion) return;
+    // Check if the selected answer is correct
     const correctAnswer = answerOptions.find((option) => option.isCorrect);
-    const userScoreAdder = userScore + 1;
-
     if (selectedAnswer === correctAnswer) {
-      
-      setUserScore(userScoreAdder);
-      console.log(`Correct, Score: ${userScore}`);
+      setUserScore((prevScore) => prevScore + 1);
+    }
+
+    // Update user selections
+    setUserSelections((prevSelections) => [...prevSelections, selectedAnswer]);
+
+    if (currentQuestion === questions.length - 1) {
+      setIsQuizComplete(true);
     } else {
-      console.log("Incorrect!");
+      handleNext();
     }
   };
-
-  const quizComplete = () => {
-    setIsQuizComplete(true);
-  }
+  
+    const quizProgress = () => {
+      return (
+        currentQuestion + 1
+      )
+    };
 
   // Provide the state and functions to the child components
   const contextValue = {
     currentQuestion,
     answerOptions,
+    questions,
+    totalQuestions: questions.length,
     handlePrevious,
     handleNext,
-    handleComplete,
-    allQuestions,
-    quizProgress,
     handleUserSelection,
-    quizComplete,
+    quizProgress,
     userScore,
     isQuizComplete,
   };
@@ -82,9 +81,5 @@ const QuestionProvider = ({ children }) => {
     </QuestionContext.Provider>
   );
 };
-
-export function useQuestionContext() {
-  return useContext(QuestionContext);
-}
 
 export { QuestionContext, QuestionProvider };

@@ -14,9 +14,7 @@ export function ButtonPre() {
   );
 }
 
-export function ButtonNext() {
-    const { handleNext } = useQuestionContext();
-
+export function ButtonNext({handleNext}) {
     return (
         <button
             onClick={handleNext}
@@ -27,12 +25,10 @@ export function ButtonNext() {
   );
 }
 
-export function ButtonComplete() {
-    const { quizComplete } = useQuestionContext();
-
+export function ButtonComplete({handleResults}) {
     return (
         <button
-            onClick={quizComplete}
+            onClick={handleResults}
             className="w-32 md:w-40 py-3 bg-red-800 rounded-lg"
         >
             Complete

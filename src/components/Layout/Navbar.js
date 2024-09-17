@@ -10,7 +10,7 @@ function Navbar() {
                     <Link href="/">
                     <img src="planet-logo.svg" className="h-14 animate-spin-slow" alt="Planet"/>
                     </Link>
-                    <p className="text-xl text-slate-200 hover:text-violet-400">Planet Quiz</p>
+                    <h1 className="text-xl text-slate-200 hover:text-violet-400 cursor-pointer">Planet Quiz</h1>
                     <ul className="hidden md:flex gap-x-6 text-white">
                         <li>
                             <Link href="/quiz">
