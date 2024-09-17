@@ -1,1 +1,0 @@
-//Button to delete a question.
